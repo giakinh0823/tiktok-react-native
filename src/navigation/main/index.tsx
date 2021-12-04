@@ -12,6 +12,7 @@ import HomeScreen from "../../screens/Home";
 import EditProfile from "../../screens/Profile/Edit/EditProfile";
 import SavePostScreen from "../../screens/SavePost/index";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import EditProfileFiled from '../../screens/Profile/EditProfileFiled';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,13 @@ const Navigation = (props: Props) => {
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="EditProfileField"
+            component={EditProfileFiled}
             options={{
               headerShown: false,
             }}

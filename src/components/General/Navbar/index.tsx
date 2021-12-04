@@ -4,11 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import Feather from "react-native-vector-icons/Feather";
 
 interface Props {
-    leftButton?:boolean;
+    leftButton?:any;
     title?: string; 
 }
 
-const NavbarGeneral = ({leftButton = false, title}: Props) => {
+const NavbarGeneral = ({leftButton = {display: false}, title}: Props) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -20,10 +20,10 @@ const NavbarGeneral = ({leftButton = false, title}: Props) => {
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => leftButton.action()}
         style={styles.button}
       >
-        <Feather name="arrow-left" size={24} style={styles.icon} color={leftButton ? 'black': 'white'}/>
+        <Feather name={leftButton.name} size={24} style={styles.icon} color={leftButton.display ? 'black': 'white'}/>
       </TouchableOpacity>
     </View>
   );
