@@ -92,3 +92,17 @@ export const getPostsFromFirebase = async () => {
     throw error;
   }
 };
+
+export const getAllPostsFromFirebase = async () => {
+  try {
+    const docRef = await query(collection(db, "posts"), orderBy("creation", "desc"));
+    const docSnap = await getDocs(docRef);
+    const posts: any[] = [];
+    docSnap.forEach((doc: any) => {
+      posts.push({ id: doc.id, ...doc.data() });
+    });
+    return posts;
+  } catch (error) {
+    throw error;
+  }
+}
