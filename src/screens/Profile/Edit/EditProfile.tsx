@@ -35,7 +35,7 @@ const EditProfile = (props: Props) => {
   return (
     <Safeview>
       <View style={styles.container}>
-        <NavbarGeneral title={"Gia Kinh"} />
+        <NavbarGeneral title={"Edit Profile"} />
         <View style={styles.imageViewContentainer}>
           <TouchableOpacity
             style={styles.imageViewContent}

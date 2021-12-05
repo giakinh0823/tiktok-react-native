@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface AuthState {
   user: any;
@@ -64,7 +63,17 @@ const authSlice = createSlice({
     },
     changeImageFailure: (state) => {
       state.loading = false;
-    }
+    },
+    saveUser: (state, action: PayloadAction<{field: string, value: any}>) => {
+      state.loading = true;
+    },
+    saveUserSuccess: (state, action: PayloadAction<any>) => {
+      state.user = action.payload;
+      state.loading = false;
+    },
+    saveUserFailure: (state) => {
+      state.loading = false;
+    },
   },
 });
 

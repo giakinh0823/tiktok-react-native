@@ -26,8 +26,11 @@ const SavePostScreen = ({ route }: Props) => {
   const user = useAppSelector(selectAuthUser);
 
   const handleSavePost = () => {
-    if (user){
+    try{
       dispatch(postActions.savePost({ source: source, sourceThumb: sourceThumb,description: description, userId: user?.user?.uid }));
+      navigation.navigate("Me" as never);
+    }catch(e){
+      console.log(e);
     }
   };
 

@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import authReducer from '../screens/Auth/authSlice';
 import postReducer from '../screens/SavePost/postSlice';
+import searchReducer from '../screens/Search/searchSlice';
 import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 const rootReducer =  combineReducers({
   auth: authReducer,
   post: postReducer,
+  search: searchReducer,
 })
 
 export const store = configureStore({

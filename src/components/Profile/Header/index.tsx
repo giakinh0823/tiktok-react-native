@@ -12,11 +12,11 @@ const ProfileHeader = ({ user }: Props) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: user.providerData[0].photoURL }}
+        source={{ uri: user?.providerData[0]?.photoURL }}
         style={styles.image}
       />
       <Text style={styles.text}>
-        @{user.providerData[0].email.replace(/(@.*)/gi, "")}
+        @{user?.providerData[0]?.email.replace(/(@.*)/gi, "")}
       </Text>
       <View style={styles.couterContainer}>
         <View style={styles.couterItemContainer}>

@@ -61,3 +61,4 @@ export const registerFirebase = ({ email, password }: User) =>
     .catch((error: any) => {
       throw error;
     });
+

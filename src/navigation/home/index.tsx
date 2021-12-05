@@ -5,6 +5,7 @@ import Feather from "react-native-vector-icons/Feather";
 import CameraScreen from "../../screens/Camera";
 import FeedScreen from "../../screens/Feed";
 import ProfileScreen from "../../screens/Profile";
+import SearchScreen from "../../screens/Search";
 
 interface Props {}
 
@@ -34,7 +35,7 @@ const HomeNavigation = (props: Props) => {
       />
       <Tab.Screen
         name="Discover"
-        component={FeedScreen}
+        component={SearchScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
@@ -63,7 +64,7 @@ const HomeNavigation = (props: Props) => {
         }}
       />
       <Tab.Screen
-        name="me"
+        name="Me"
         component={ProfileScreen}
         options={{
           headerShown: false,

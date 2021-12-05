@@ -2,8 +2,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { loginFirebase, registerFirebase } from "../../api/authFireBase";
-import { saveUserToFirebase } from "../../api/userFireBase";
+import {
+  saveUserToFirebase,
+  saveUserFieldToFirebase,
+} from "../../api/userFireBase";
 import { authActions } from "./authSlice";
+import { getUserFromFirebase } from '../../api/userFireBase';
 
 function* login(action: PayloadAction<{ email: string; password: string }>) {
   try {
@@ -31,14 +35,13 @@ export async function getUserFromStorange(): Promise<any> {
 
 function* getUser() {
   try {
-    const data: any[] = yield call(getUserFromStorange);
-    // console.log(data)
+    const data: any[] = yield call(getUserFromFirebase);
     yield put(authActions.getUserSuccess(data));
   } catch (error) {
     yield put(authActions.getUserFailure());
   }
 }
- 
+
 function* changeImage(action: PayloadAction<any>) {
   try {
     const data: any[] = yield call(saveUserToFirebase, action.payload);
@@ -48,9 +51,19 @@ function* changeImage(action: PayloadAction<any>) {
   }
 }
 
+function* saveUser(action: PayloadAction<{field: string, value: any}>) {
+  try {
+    const data: any[] = yield call(saveUserFieldToFirebase, action.payload);
+    yield put(authActions.saveUserSuccess(data));
+  } catch (error) {
+    yield put(authActions.saveUserFailure());
+  }
+}
+
 export function* authSaga() {
   yield takeLatest(authActions.login.type, login);
   yield takeLatest(authActions.register.type, register);
   yield takeLatest(authActions.getUser.type, getUser);
   yield takeLatest(authActions.changeImage.type, changeImage);
+  yield takeLatest(authActions.saveUser.type, saveUser);
 }
